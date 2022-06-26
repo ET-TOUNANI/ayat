@@ -1,17 +1,20 @@
+import 'package:ayat/pages/Home.page.dart';
 import 'package:flutter/material.dart';
 
-void main()=>runApp(const myApp());
+import 'configs/configs.dart';
 
-class myApp extends StatelessWidget {
-  const myApp({Key? key}) : super(key: key);
+void main()=>runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        "/":(context)=>Home(),
+        "/":(context)=>const Home(),
       },
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: buildMaterialColor(const Color(0x02352EFF))),
     );
   }
 }
