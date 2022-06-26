@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
-MaterialColor buildMaterialColor(Color color) {
-  List strengths = <double>[.05];
-  Map<int, Color> swatch = {};
-  final int r = color.red, g = color.green, b = color.blue;
+getAppBar(){
+  return PreferredSize(
+      preferredSize: const Size.fromHeight(50),
+      child: Container(
+        alignment: Alignment.bottomCenter,
+        decoration: const BoxDecoration(
+            gradient:LinearGradient(
+                colors: [Color(0xff045448),Color(0xff002822)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:<Widget> [
+            IconButton(
+                onPressed: (){},
+                icon: const Icon(Icons.settings,color: Color(0xffFFE29D),)
+            ),
+            const Text("المغرب    ",style: TextStyle(color: Color(0xffFFE29D),fontSize: 18),)
 
-  for (int i = 1; i < 10; i++) {
-    strengths.add(0.1 * i);
-  }
-  strengths.forEach((strength) {
-    final double ds = 0.5 - strength;
-    swatch[(strength * 1000).round()] = Color.fromRGBO(
-      r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-      g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-      b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-      1,
-    );
-  });
-  return MaterialColor(color.value, swatch);
+          ],
+        ),
+      )
+  );
 }
