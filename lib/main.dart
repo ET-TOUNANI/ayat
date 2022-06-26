@@ -1,4 +1,5 @@
 import 'package:ayat/pages/Home.page.dart';
+import 'package:ayat/pages/aya.page.dart';
 import 'package:flutter/material.dart';
 
 void main()=>runApp(const MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/":(context)=>const Home(),
+        "/aya":(context)=>const Aya(),
       },
     );
   }
