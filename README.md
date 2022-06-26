@@ -3,4 +3,4 @@
 
 ## api used https://quran.api-docs.io/v4/
 ## site help
-[http://colormind.io/image/](https://fluttergradientgenerator.com/)
+https://fluttergradientgenerator.com/
