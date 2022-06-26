@@ -5,6 +5,12 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+
+      appBar: AppBar(title: const Text("ايات"),),
+      body: const Center(
+        child: Text('السلام عليكم'),
+      ),
+    );
   }
 }
