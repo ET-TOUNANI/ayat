@@ -1,4 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:timer_builder/timer_builder.dart';
+getFront(n){
+  return Container(
+    width: double.infinity,
+    height: 200,
+    decoration: const BoxDecoration(
+      image: DecorationImage(
+          image: AssetImage("images/1.png"), fit: BoxFit.fitWidth),
+    ),
+    child:  Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Image(
+          image: AssetImage("images/$n.png"),
+
+          height: 120,
+        ),
+      ],
+    ),
+  );
+}
+getTime(){
+ return Container(
+      height: 200,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("images/1.png"),
+            fit: BoxFit.fitWidth
+        ),
+      ),
+      child:  TimerBuilder.periodic(const Duration(seconds: 1),
+          builder: (context) {
+            var currentTime = DateTime.now();
+            return Center(
+                child: Text(
+                  "\n\n\n${(currentTime.hour<10)? "0${currentTime.hour}":currentTime.hour} : ${(currentTime.minute<10)? "0${currentTime.minute}":currentTime.minute} : ${(currentTime.second<10)? "0${currentTime.second}":currentTime.second}",
+                  style: const TextStyle(
+                      color: Color(0xffFFE29D),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40),
+                ));
+          })// button text
+  );
+}
+
 
 getAppBar() {
   return PreferredSize(
@@ -12,8 +57,6 @@ getAppBar() {
           end: Alignment.bottomCenter,
         )),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             IconButton(
                 onPressed: () {},
@@ -21,10 +64,11 @@ getAppBar() {
                   Icons.settings,
                   color: Color(0xffFFE29D),
                 )),
-            const Text(
-              "المغرب    ",
-              style: TextStyle(color: Color(0xffFFE29D), fontSize: 18),
-            )
+            SizedBox(width: 270,),
+            Image(
+              image: AssetImage("images/d.png"),
+              height: 30,
+            ),
           ],
         ),
       ));
