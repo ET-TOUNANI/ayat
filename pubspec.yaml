@@ -36,6 +36,9 @@ dependencies:
   geolocator: ^8.0.0
   permission_handler: ^10.0.0
   splash_screen_view: ^3.0.0
+  syncfusion_flutter_datepicker: ^20.2.40
+  flutter_localizations:
+    sdk: flutter
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -28,12 +28,16 @@ class Aya extends StatelessWidget {
                 builder: (context, snapshot) {
                   // Decode the JSON
                   var new_data = json.decode(snapshot.data.toString());
-                  int i=1 + Random().nextInt(114 - 1);
+                  int i=1 + Random().nextInt(114 - 1);// get random sora
                   return SizedBox(
                     height: 400,
                     child: ListView.builder(
                       // Build the ListView
                       itemBuilder: (BuildContext context, int index) {
+                        var tab=(new_data[i]['Surah']).split(')');
+                        int j=Random().nextInt(tab.length-1);
+                       // print('${j} ---- ${tab.length}');
+
                         return Column(
                           children: [
                             Text(
@@ -51,7 +55,7 @@ class Aya extends StatelessWidget {
                                 child: Directionality(
                                   textDirection: TextDirection.rtl,
                                   child: Text(
-                                    '${((new_data[i]['Surah']).split(')'))[Random().nextInt(((new_data[1 + Random().nextInt(114 - 1)]['Surah']).split(')')).length)]})',
+                                    '${tab[j]})',
                                     textAlign: TextAlign.justify,
                                     style: const TextStyle(
                                         color: Color(0xffFFE29D),

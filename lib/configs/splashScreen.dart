@@ -2,6 +2,8 @@ import 'package:ayat/pages/Home.page.dart';
 import 'package:flutter/material.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 getSplashScreen(){
+
+
   return SplashScreenView(
     navigateRoute: Home(),
     duration: 3000,
