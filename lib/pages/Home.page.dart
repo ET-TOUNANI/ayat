@@ -1,6 +1,7 @@
 import 'package:ayat/configs/configs.dart';
-import 'package:flutter/material.dart';
+import 'package:ayat/pages/awkatSalat.page.dart';
 import 'package:ayat/pages/aya.page.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset("images/1.png"),
+          getFront('h'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -28,9 +29,25 @@ class Home extends StatelessWidget {
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
                       splashColor: Colors.black26,
-                      onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                      onTap: () async {
+                        bool permission = await checkGps();
+                        if (permission) {
+                          List<double> tab = await getLocation();
+                          if (tab.isNotEmpty) {
+                            List<DateTime> awkats = getSalawat(tab[0], tab[1]);
+                            if (awkats.isNotEmpty) {
+                              List<Map> times = awkat(awkats[0], awkats[1],
+                                  awkats[2], awkats[3], awkats[4], awkats[5]);
+                              if (times.isNotEmpty) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AwkatSalat(awkat: times)));
+                              }
+                            }
+                          }
+                        }
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -107,7 +124,7 @@ class Home extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Aya()),
+                          MaterialPageRoute(builder: (context) => Aya()),
                         );
                       },
                       child: Column(
@@ -123,7 +140,7 @@ class Home extends StatelessWidget {
                             height: 6,
                           ),
                           const Text(
-                            "اية الاسبوع",
+                            "اية",
                             style: TextStyle(
                                 fontSize: 20, color: Color(0xffFFE29D)),
                           ),
@@ -223,8 +240,7 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                        Navigator.pushNamed(context, '/azkar');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -262,8 +278,7 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                        Navigator.pushNamed(context, '/quran');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -354,7 +369,7 @@ class Home extends StatelessWidget {
                             height: 6,
                           ),
                           const Text(
-                            "الصانع",
+                            "حول",
                             style: TextStyle(
                                 fontSize: 20, color: Color(0xffFFE29D)),
                           ),
