@@ -35,6 +35,7 @@ dependencies:
   adhan: ^1.0.0
   geolocator: ^8.0.0
   permission_handler: ^10.0.0
+  splash_screen_view: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -100,3 +101,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+splash_screen_view:
+  # Use color to set the background of your splash screen to a solid color.
+  # Use background_image to set the background of your splash screen to a png image.
+  # This is useful for gradients. The image will be stretch to the  size of the app.
+  # Only one parameter can be used, color and background_image cannot both be set.
+
+  color: "#ffffff"
