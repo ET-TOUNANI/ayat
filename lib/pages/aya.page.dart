@@ -23,54 +23,51 @@ class Aya extends StatelessWidget {
               height: 20,
             ),
             FutureBuilder(
-                future:
-                DefaultAssetBundle.of(context).loadString('data/Quran.json'),
-
+                future: DefaultAssetBundle.of(context)
+                    .loadString('data/Quran.json'),
                 builder: (context, snapshot) {
-
                   // Decode the JSON
-                  List<dynamic> new_data = json.decode(snapshot.data.toString());
-                     if (new_data.isNotEmpty)
-                  {
-                    int i = 1 + Random().nextInt(114 - 1);
-                    List tab = (new_data[i]['Surah']).split(')');
-                    tab.removeWhere((element) => element == '(');
-                    int j = Random().nextInt(tab.length);
-                    String aya = '${tab[j]})';
-                    return Column(
-                      children: [
-                        Text(
-                          'من سورة ${new_data[i]['Name']}',
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(
-                              color: Color(0xffFFE29D),
-                              wordSpacing: 5,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                            padding: EdgeInsets.all(15),
-                            //apply padding to all four sides
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Text(
-                                '${aya}',
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(
-                                    color: Color(0xffFFE29D),
-                                    wordSpacing: 5,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )),
-                      ],
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  var new_data = json.decode(snapshot.data.toString());
+                  int i=1 + Random().nextInt(114 - 1);
+                  return SizedBox(
+                    height: 400,
+                    child: ListView.builder(
+                      // Build the ListView
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            Text(
+                              'من سورة ${new_data[i]['Name']}',
+                              textAlign: TextAlign.justify,
+                              style: const TextStyle(
+                                  color: Color(0xffFFE29D),
+                                  wordSpacing: 5,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                                padding: EdgeInsets.all(15),
+                                //apply padding to all four sides
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text(
+                                    '${((new_data[i]['Surah']).split(')'))[Random().nextInt(((new_data[1 + Random().nextInt(114 - 1)]['Surah']).split(')')).length)]})',
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                        color: Color(0xffFFE29D),
+                                        wordSpacing: 5,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                          ],
+                        );
+                      },
+                      itemCount: new_data == null ? 0 : 1,
+
+                    ),
                   );
                 }),
-            //Rows()
           ],
         ),
       ),
