@@ -7,7 +7,7 @@ getSplashScreen(){
     duration: 3000,
     imageSize: 130,
     imageSrc: "images/ds.png",
-    text: "hi zin cv",
+    text: "أشهد أن لا إله إلا الله، وأشهد أن محمداً رسول الله",
     textType: TextType.TyperAnimatedText,
     textStyle: const TextStyle(
       color: Color(0xffFFE29D),
