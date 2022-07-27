@@ -22,7 +22,6 @@ class Surah extends StatelessWidget {
                   child: Text(sora,textAlign: TextAlign.justify,style: const TextStyle(color: Color(0xffFFE29D),wordSpacing: 5,fontSize: 30,fontWeight: FontWeight.bold ),),
                 )
             ),
-
           ],
         ),
       ),
