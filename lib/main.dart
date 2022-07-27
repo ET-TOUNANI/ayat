@@ -1,4 +1,5 @@
 import 'package:ayat/pages/Azkar.page.dart';
+import 'package:ayat/pages/Doae.page.dart';
 import 'package:ayat/pages/Home.page.dart';
 import 'package:ayat/pages/aya.page.dart';
 import 'package:ayat/pages/quran.page.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         "/quran":(context)=> Quran(),
         "/azkar":(context)=> Azkar(),
         "/splash":(context)=> getSplashScreen(),
+        "/doae":(context)=>  Doae(),
       },
       initialRoute: "/splash",
     );

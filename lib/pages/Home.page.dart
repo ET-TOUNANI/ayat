@@ -202,8 +202,7 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                        Navigator.pushNamed(context, "/doae");
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

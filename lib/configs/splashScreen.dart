@@ -5,9 +5,9 @@ getSplashScreen(){
   return SplashScreenView(
     navigateRoute: Home(),
     duration: 3000,
-    imageSize: 130,
+    imageSize: 230,
     imageSrc: "images/ds.png",
-    text: "أشهد أن لا إله إلا الله، وأشهد أن محمداً رسول الله",
+    text: "الله  اكبر",
     textType: TextType.TyperAnimatedText,
     textStyle: const TextStyle(
       color: Color(0xffFFE29D),
