@@ -1,6 +1,6 @@
 # ayat
 <img src="12.png">
-<img src="1.jpg">
+<img src="1.jpg" height="140" width="150">
 <img src="2.jpg">
 <img src="3.jpg">
 <img src="4.jpg">
