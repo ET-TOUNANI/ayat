@@ -10,10 +10,10 @@ class MapLocation extends StatefulWidget {
 
 class _MyAppState extends State<MapLocation> {
   bool isPlaying = false;
-  Duration? _duration;
-  Duration? _position;
-  double? _slider;
-  String? _error;
+  Duration _duration=Duration();
+  Duration _position=Duration();
+  double _slider=0;
+  String _error="";
   num curIndex = 0;
   PlayMode playMode = AudioManager.instance.playMode;
 
@@ -185,15 +185,9 @@ class _MyAppState extends State<MapLocation> {
   @override
   void initState() {
     super.initState();
-    setupAudio();
+    AudioManager.instance.playOrPause();
+      setupAudio();
     //loadFile();
-  }
-
-  @override
-  void dispose() {
-    // 释放所有资源
-    AudioManager.instance.release();
-    super.dispose();
   }
 
   void setupAudio() {
@@ -221,7 +215,7 @@ class _MyAppState extends State<MapLocation> {
           break;
         case AudioManagerEvents.ready:
           print("ready to play");
-          _error = null;
+          _error = "";
           _position = AudioManager.instance.position;
           _duration = AudioManager.instance.duration;
           setState(() {});
@@ -230,7 +224,7 @@ class _MyAppState extends State<MapLocation> {
           break;
         case AudioManagerEvents.seekComplete:
           _position = AudioManager.instance.position;
-          _slider = _position!.inMilliseconds / _duration!.inMilliseconds;
+          _slider = _position.inMilliseconds / _duration.inMilliseconds;
           setState(() {});
           print("seek event is completed. position is [$args]/ms");
           break;
@@ -243,7 +237,7 @@ class _MyAppState extends State<MapLocation> {
           break;
         case AudioManagerEvents.timeupdate:
           _position = AudioManager.instance.position;
-          _slider = _position!.inMilliseconds / _duration!.inMilliseconds;
+          _slider = _position.inMilliseconds / _duration.inMilliseconds;
           setState(() {});
           AudioManager.instance.updateLrc(args["position"].toString());
           break;
@@ -313,7 +307,7 @@ class _MyAppState extends State<MapLocation> {
               ),
               Center(
                   child: Text(_error != null
-                      ? _error!
+                      ? _error
                       : "${AudioManager.instance.info!.title}")),
               bottomPanel()
             ],
@@ -348,9 +342,8 @@ class _MyAppState extends State<MapLocation> {
                 ),
                 onPressed: () => AudioManager.instance.previous()),
             IconButton(
-              onPressed: () async {
-                bool playing = await AudioManager.instance.playOrPause();
-                print("await -- $playing");
+              onPressed: ()  {
+                 AudioManager.instance.playOrPause();
               },
               padding: const EdgeInsets.all(0.0),
               icon: Icon(
@@ -403,7 +396,7 @@ class _MyAppState extends State<MapLocation> {
     return Row(
       children: <Widget>[
         Text(
-          _formatDuration(_position!),
+          _formatDuration(_position),
           style: style,
         ),
         Expanded(
@@ -425,25 +418,23 @@ class _MyAppState extends State<MapLocation> {
                   inactiveTrackColor: Colors.white,
                 ),
                 child: Slider(
-                  value: _slider ?? 0,
+                  value: _slider ,
                   onChanged: (value) {
                     setState(() {
                       _slider = value;
                     });
                   },
                   onChangeEnd: (value) {
-                    if (_duration != null) {
-                      Duration msec = Duration(
-                          milliseconds:
-                              (_duration!.inMilliseconds * value).round());
-                      AudioManager.instance.seekTo(msec);
-                    }
+                    Duration msec = Duration(
+                        milliseconds:
+                            (_duration.inMilliseconds * value).round());
+                    AudioManager.instance.seekTo(msec);
                   },
                 )),
           ),
         ),
         Text(
-          _formatDuration(_duration!),
+          _formatDuration(_duration),
           style: style,
         ),
       ],
@@ -451,7 +442,7 @@ class _MyAppState extends State<MapLocation> {
   }
 
   String _formatDuration(Duration d) {
-    if (d == null) return "--:--";
+    if (d == const Duration()) return "--:--";
     int minute = d.inMinutes;
     int second = (d.inSeconds > 60) ? (d.inSeconds % 60) : d.inSeconds;
     String format = ((minute < 10) ? "0$minute" : "$minute") +
