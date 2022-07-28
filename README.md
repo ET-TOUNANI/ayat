@@ -4,9 +4,9 @@
 
 
 <p float="left">
- <img src="1.jpg" height="500" width="255">
-<img src="2.jpg" height="500" width="255">
-<img src="3.jpg" height="500" width="255">
+ <img src="1.jpg" height="500" width="262">
+<img src="2.jpg" height="500" width="262">
+<img src="3.jpg" height="500" width="262">
 </p>
 <p float="left">
 <img src="4.jpg" height="500" width="255">
