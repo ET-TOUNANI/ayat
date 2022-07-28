@@ -9,7 +9,9 @@
 <img src="7.jpg" height="400" width="250">
 <img src="8.jpg" height="400" width="250">
 <img src="9.jpg" height="400" width="250">
-
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](https://...9.jpg)  |  ![](https://...8.jpg)
 ## api used https://quran.api-docs.io/v4/
 ## site help
 * gradien  https://generatorhttps://fluttergradientgenerator.com/ 
