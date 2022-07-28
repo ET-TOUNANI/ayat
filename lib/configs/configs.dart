@@ -108,9 +108,10 @@ Future<List<double>> getLocation() async {
 }
 
 List<Map> awkat(DateTime fajr, DateTime chorok, DateTime dohr, DateTime aser,
-    DateTime maghrib, DateTime isha) {
+    DateTime maghrib, DateTime isha,f) {
   return [
     {
+      'f':f,
       'time':
           '${(fajr.hour < 10) ? '0${fajr.hour}' : fajr.hour} : ${(fajr.minute < 10) ? '0${fajr.minute}' : fajr.minute}',
       'name': 'الفجر'
@@ -154,7 +155,7 @@ Future<bool> checkGps() async {
   return false;
 }
 
-List<DateTime> getSalawat(double lat, double long) {
+List<dynamic> getSalawat(double lat, double long) {
   final myCoordinates =
       Coordinates(lat, long); // Replace with your own location lat, lng.
   final params = CalculationMethod.muslim_world_league.getParameters();
@@ -167,6 +168,7 @@ List<DateTime> getSalawat(double lat, double long) {
     prayerTimes.dhuhr,
     prayerTimes.asr,
     prayerTimes.maghrib,
-    prayerTimes.isha
+    prayerTimes.isha,
+    prayerTimes.nextPrayer().name
   ];
 }

@@ -34,10 +34,10 @@ class Home extends StatelessWidget {
                         if (permission) {
                           List<double> tab = await getLocation();
                           if (tab.isNotEmpty) {
-                            List<DateTime> awkats = getSalawat(tab[0], tab[1]);
+                            List awkats = getSalawat(tab[0], tab[1]);
                             if (awkats.isNotEmpty) {
                               List<Map> times = awkat(awkats[0], awkats[1],
-                                  awkats[2], awkats[3], awkats[4], awkats[5]);
+                                  awkats[2], awkats[3], awkats[4], awkats[5],awkats[6]);
                               if (times.isNotEmpty) {
                                 Navigator.push(
                                     context,
@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Ink.image(
-                            image: const AssetImage('images/time.png'),
+                            image: const AssetImage('images/masjid.png'),
                             height: 80,
                             width: 110,
                             //fit: BoxFit.cover,
@@ -84,8 +84,7 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                        Navigator.pushNamed(context, "/qibla");
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -164,14 +163,13 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        // scanMe(); // scan the barcode
-                        //Navigator.pushNamed(context, "/scanner");
+                        Navigator.pushNamed(context, '/azkar');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Ink.image(
-                            image: const AssetImage('images/masjid.png'),
+                            image: const AssetImage('images/tasbih.png'),
                             height: 80,
                             width: 110,
                             //fit: BoxFit.cover,
@@ -180,7 +178,7 @@ class Home extends StatelessWidget {
                             height: 6,
                           ),
                           const Text(
-                            "مسجد القرب",
+                            "تسبيح",
                             style: TextStyle(
                                 fontSize: 20, color: Color(0xffFFE29D)),
                           ),
@@ -239,13 +237,13 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        Navigator.pushNamed(context, '/azkar');
+                        Navigator.pushNamed(context, '/location');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Ink.image(
-                            image: const AssetImage('images/tasbih.png'),
+                            image: const AssetImage('images/time.png'),
                             height: 80,
                             width: 110,
                             //fit: BoxFit.cover,
@@ -254,7 +252,7 @@ class Home extends StatelessWidget {
                             height: 6,
                           ),
                           const Text(
-                            "تسبيح",
+                            "اناشيد دينية",
                             style: TextStyle(
                                 fontSize: 20, color: Color(0xffFFE29D)),
                           ),
@@ -264,7 +262,8 @@ class Home extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
+                  )
+
                 ],
               ),
               Column(

@@ -13,8 +13,30 @@ class AwkatSalat extends StatefulWidget {
 
 class _AwkatSalatState extends State<AwkatSalat> {
   List<Widget> row = [];
+  String? next;
 
   void initState() {
+    switch ('${widget.awkat[0]['f']}') {
+      case 'fajr':
+        next = 'الصلاة التالية الفجر';
+        break;
+      case 'dhuhr':
+        next = 'الصلاة التالية الضهر';
+        break;
+      case 'asr':
+        next = 'الصلاة التالية العصر';
+        break;
+      case 'maghrib':
+        next = 'الصلاة التالية المغرب';
+        break;
+      case 'isha':
+        next = 'الصلاة التالية العشاء';
+        break;
+      default:
+        next = 'لا تنسنا من الدعاء';
+        break;
+    }
+
     for (int i = 0; i < widget.awkat.length; i++) {
       row.add(getRow(i));
     }
@@ -23,9 +45,8 @@ class _AwkatSalatState extends State<AwkatSalat> {
 
   getRow(index) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15.0,8,15,8),
+      padding: const EdgeInsets.fromLTRB(15.0, 8, 15, 8),
       child: Chip(
-
         label: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -44,7 +65,6 @@ class _AwkatSalatState extends State<AwkatSalat> {
             )
           ],
         ),
-
       ),
     );
   }
@@ -67,16 +87,30 @@ class _AwkatSalatState extends State<AwkatSalat> {
                     builder: (context) {
                   var currentTime = DateTime.now();
                   return Center(
-                      child: Text(
-                    "\n\n\n${(currentTime.hour < 10) ? "0${currentTime.hour}" : currentTime.hour} : ${(currentTime.minute < 10) ? "0${currentTime.minute}" : currentTime.minute} : ${(currentTime.second < 10) ? "0${currentTime.second}" : currentTime.second}",
-                    style: const TextStyle(
-                        color: Color(0xffFFE29D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40),
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "\n\n${(currentTime.hour < 10) ? "0${currentTime.hour}" : currentTime.hour} : ${(currentTime.minute < 10) ? "0${currentTime.minute}" : currentTime.minute} : ${(currentTime.second < 10) ? "0${currentTime.second}" : currentTime.second} ",
+                        style: const TextStyle(
+                            color: Color(0xffFFE29D),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40),
+                      ),
+                      Text(
+                        '$next',
+                        style: const TextStyle(
+                            color: Color(0xffFFE29D),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 35),
+                      ),
+                    ],
                   ));
                 }) // button text
                 ),
-            Divider(height: 30,),
+            Divider(
+              height: 30,
+            ),
             Center(
               child: Column(
                 children: row,

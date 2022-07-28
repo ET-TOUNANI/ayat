@@ -37,10 +37,10 @@ dependencies:
   permission_handler: ^10.0.0
   splash_screen_view: ^3.0.0
   syncfusion_flutter_datepicker: ^20.2.40
-  flutter_localizations:
-    sdk: flutter
-
-
+  flutter_compass:
+    git: https://github.com/hemanthrajv/flutter_compass.git
+  flutter_audio_query: ^0.3.5+6
+  audio_manager: ^0.8.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -78,6 +78,7 @@ flutter:
   assets:
      - images/
      - data/
+     - audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
