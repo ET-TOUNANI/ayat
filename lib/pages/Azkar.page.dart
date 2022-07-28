@@ -6,6 +6,9 @@ import 'dart:math';
 import 'package:ayat/configs/GetButtonNavigatBar.config.dart';
 import 'package:ayat/configs/configs.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../adhelper.page.dart';
 
 class Azkar extends StatefulWidget {
   const Azkar({Key? key}) : super(key: key);
@@ -19,10 +22,37 @@ class _AzkarState extends State<Azkar> {
   int time=0;
   int repeat=1;
   int i=0;
+  BannerAd? _bannerAd;
+  @override
+  void dispose() {
+    // TODO: Dispose a BannerAd object
+    _bannerAd?.dispose();
 
-  void initState(){
-     i= Random().nextInt(70);// get random sora
+
+    super.dispose();
   }
+  @override
+  void initState() {
+    // TODO: Load a banner ad
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          ad.dispose();
+        },
+      ),
+    ).load();
+    i= Random().nextInt(70);// get random sora
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +64,15 @@ class _AzkarState extends State<Azkar> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             getFront('g'),
+            if (_bannerAd != null)
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: _bannerAd!.size.width.toDouble(),
+                  height: _bannerAd!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAd!),
+                ),
+              ),
             const Divider(
               height: 20,
             ),
@@ -68,32 +107,7 @@ class _AzkarState extends State<Azkar> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )),
-                            RawMaterialButton(
-                              onPressed: () {
-                                if(time<repeat){
-                                  time++;
-                                  setState((){
 
-                                  });
-                                }
-                                else {
-                                  time=0;
-                                i = Random().nextInt(70);
-                                  setState((){
-
-                                  });
-                                }
-
-                              },
-                              elevation: 2.0,
-                              fillColor: Colors.green,
-                              child: Icon(
-                                Icons.add,
-                                size: 24.0,
-                              ),
-                              padding: EdgeInsets.all(15.0),
-                              shape: CircleBorder(),
-                            ),
                             Divider(),
                             Text("$time / $repeat",
                                 style: const TextStyle(
@@ -112,6 +126,25 @@ class _AzkarState extends State<Azkar> {
                 }),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        
+        child:Icon(Icons.add,color: Color(0xffFFE29D),size: 30,),
+        onPressed: (){
+          if(time<repeat){
+            time++;
+            setState((){
+
+            });
+          }
+          else {
+            time=0;
+            i = Random().nextInt(70);
+            setState((){
+
+            });
+          }
+        },
       ),
       bottomNavigationBar: GetButtonNavigatBar(context),
     );

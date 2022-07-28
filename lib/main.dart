@@ -4,13 +4,19 @@ import 'package:ayat/pages/Hijri.page.dart';
 import 'package:ayat/pages/Home.page.dart';
 import 'package:ayat/pages/MapsLocation.page.dart';
 import 'package:ayat/pages/Qiblat.page.dart';
+import 'package:ayat/pages/about.dart';
 import 'package:ayat/pages/aya.page.dart';
 import 'package:ayat/pages/quran.page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'configs/splashScreen.dart';
 
-void main()=>runApp(const MyApp());
+void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+   runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,9 +35,10 @@ class MyApp extends StatelessWidget {
         "/hijri":(context)=>  Hijri(),
         "/qibla":(context)=>  Qiblat(),
         "/location":(context)=>  MapLocation(),
-
+        "/about":(context)=>  About(),
       },
       initialRoute: "/splash",
     );
   }
 }
+

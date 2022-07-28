@@ -2,6 +2,9 @@ import 'package:audio_manager/audio_manager.dart';
 import 'package:ayat/configs/GetButtonNavigatBar.config.dart';
 import 'package:ayat/configs/configs.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../adhelper.page.dart';
 
 class MapLocation extends StatefulWidget {
   @override
@@ -181,13 +184,36 @@ class _MyAppState extends State<MapLocation> {
       "coverUrl": "images/d.png"
     }
   ];
+  BannerAd? _bannerAd;
+  @override
+  void dispose() {
+    // TODO: Dispose a BannerAd object
+    _bannerAd?.dispose();
 
+
+    super.dispose();
+  }
   @override
   void initState() {
-    super.initState();
     AudioManager.instance.playOrPause();
-      setupAudio();
-    //loadFile();
+    setupAudio();
+    // TODO: Load a banner ad
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          ad.dispose();
+        },
+      ),
+    ).load();
   }
 
   void setupAudio() {
@@ -284,6 +310,15 @@ class _MyAppState extends State<MapLocation> {
           child: Column(
             children: <Widget>[
               getFront('d'),
+              if (_bannerAd != null)
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: _bannerAd!.size.width.toDouble(),
+                  height: _bannerAd!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAd!),
+                ),
+              ),
               Divider(color: Colors.white,),
               Expanded(
                 child: ListView.separated(

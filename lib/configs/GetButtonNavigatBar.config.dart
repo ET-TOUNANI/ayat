@@ -10,7 +10,7 @@ GetButtonNavigatBar(context){
         Navigator.pushNamed(context, "/");
       }
       else{
-
+        Navigator.pushNamed(context, "/about");
       }
     },
     type: BottomNavigationBarType.fixed,

@@ -119,30 +119,6 @@ class _ZikerState extends State<Ziker> {
                         fontWeight: FontWeight.bold),
                   ),
                 )),
-            RawMaterialButton(
-              onPressed: () {
-                if(time<widget.repeat){
-                  setState((){
-                    time++;
-                  });
-                }
-                else {
-                  setState((){
-                    time=0;
-                  });
-                  Navigator.pop(context);
-                }
-
-              },
-              elevation: 2.0,
-              fillColor: Colors.green,
-              child: Icon(
-                Icons.add,
-                size: 24.0,
-              ),
-              padding: EdgeInsets.all(15.0),
-              shape: CircleBorder(),
-            ),
             Divider(),
             Text("$time / ${widget.repeat}",
                 style: const TextStyle(
@@ -154,6 +130,23 @@ class _ZikerState extends State<Ziker> {
             //Rows()
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+
+        child:Icon(Icons.add,color: Color(0xffFFE29D),size: 30,),
+        onPressed: (){
+          if(time<widget.repeat){
+            setState((){
+              time++;
+            });
+          }
+          else {
+            setState((){
+              time=0;
+            });
+            Navigator.pop(context);
+          }
+        },
       ),
       bottomNavigationBar: GetButtonNavigatBar(context),
     );
