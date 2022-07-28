@@ -1,14 +1,14 @@
 # ayat
 <img src="12.png">
-<img src="1.jpg" height="300" width="200">
-<img src="2.jpg">
-<img src="3.jpg">
-<img src="4.jpg">
-<img src="5.jpg">
-<img src="6.jpg">
-<img src="7.jpg">
-<img src="8.jpg">
-<img src="9.jpg">
+<img src="1.jpg" height="400" width="250">
+<img src="2.jpg" height="400" width="250">
+<img src="3.jpg" height="400" width="250">
+<img src="4.jpg" height="400" width="250">
+<img src="5.jpg" height="400" width="250">
+<img src="6.jpg" height="400" width="250">
+<img src="7.jpg" height="400" width="250">
+<img src="8.jpg" height="400" width="250">
+<img src="9.jpg" height="400" width="250">
 
 ## api used https://quran.api-docs.io/v4/
 ## site help
