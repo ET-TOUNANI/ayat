@@ -145,7 +145,10 @@ class _AboutState extends State<About> {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xffFFE29D),
+        child:Icon(Icons.call,color: Colors.black,size: 30,),
         onPressed: () async {
           const url = 'https://abderrahmane.vercel.app/';
           if (await canLaunchUrl(Uri.parse(url))) {
@@ -155,11 +158,6 @@ class _AboutState extends State<About> {
           }
         },
         tooltip: 'مشاركة',
-        child: Icon(
-          Icons.call,
-          color: Color(0xffFFE29D),
-          size: 30,
-        ),
       ),
     );
   }

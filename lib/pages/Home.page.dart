@@ -301,7 +301,7 @@ class _HomeState extends State<Home> {
                             height: 6,
                           ),
                           const Text(
-                            "اناشيد دينية",
+                            "تجويد",
                             style: TextStyle(
                                 fontSize: 20, color: Color(0xffFFE29D)),
                           ),

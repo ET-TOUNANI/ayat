@@ -21,6 +21,7 @@ class Quran extends StatelessWidget {
           child: Column(
             children:<Widget> [
               getFront('g'),
+              Divider(color: Colors.white,),
               Container(
                   child:  Center(
                     // Use future builder and DefaultAssetBundle to load the local JSON file
@@ -41,14 +42,17 @@ class Quran extends StatelessWidget {
                                   onTap: (){
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Surah(sora:new_data[index]['Surah'])));
                                   },
-                                  child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        Text('${new_data[index]['Descent']}',textAlign: TextAlign.justify,style: const TextStyle(fontFamily: 'me',color: Color(0xffFFE29D),fontSize: 24 ),),
-                                        Text('${new_data[index]['Name']}',textAlign: TextAlign.justify,style: const TextStyle(fontFamily: 'me',color: Color(0xffFFE29D),fontSize: 28,fontWeight: FontWeight.bold ),),
-                                        Text('${new_data[index]['Number']}',textAlign: TextAlign.justify,style: const TextStyle(color: Color(0xffFFE29D),fontSize: 20 ),),
-                                      ],
-                                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text('${new_data[index]['Descent']}',textAlign: TextAlign.justify,style: const TextStyle(fontFamily: 'me',color: Color(0xffFFE29D),fontSize: 24 ),),
+                                          Text('${new_data[index]['Name']}',textAlign: TextAlign.justify,style: const TextStyle(fontFamily: 'me',color: Color(0xffFFE29D),fontSize: 28,fontWeight: FontWeight.bold ),),
+                                          Text('${new_data[index]['Number']}',textAlign: TextAlign.justify,style: const TextStyle(color: Color(0xffFFE29D),fontSize: 20 ),),
+                                        ],
+                                      ),
+                                  ),
                                 )
                                 ;
                               },

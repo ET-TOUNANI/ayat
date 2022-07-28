@@ -13,188 +13,156 @@ class MapLocation extends StatefulWidget {
 
 class _MyAppState extends State<MapLocation> {
   bool isPlaying = false;
-  Duration _duration=Duration();
-  Duration _position=Duration();
-  double _slider=0;
-  String _error="";
+  Duration _duration = Duration();
+  Duration _position = Duration();
+  double _slider = 0;
+  String _error = "";
   num curIndex = 0;
   PlayMode playMode = AudioManager.instance.playMode;
 
-  final list = [
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/5.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/4.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/3.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/2.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/1.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/6.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/7.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/8.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/9.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/10.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/11.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/12.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/13.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/14.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/15.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/16.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/17.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/18.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/19.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/20.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/21.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/22.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/23.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/24.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/25.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/26.mp3",
-      "coverUrl": "images/d.png"
-    },
-    {
-      "title": "اناشيد",
-      "desc": "assets playback",
-      "url": "audio/27.mp3",
-      "coverUrl": "images/d.png"
-    }
-  ];
+  final list = [];
   BannerAd? _bannerAd;
+
   @override
   void dispose() {
     // TODO: Dispose a BannerAd object
     _bannerAd?.dispose();
 
-
     super.dispose();
   }
+
   @override
   void initState() {
+    if (list.isEmpty) {
+      var item = [
+        '1.* سورة الفاتحة',
+        '2.* سورة البقرة',
+        '3.* سورة آل عمران',
+        '4.* سورة النساء',
+        '5.* سورة المائدة',
+        '6.* سورة الأنعام',
+        '7.* سورة الأعراف',
+        '8.* سورة الأنفال',
+        '9.* سورة التوبة',
+        '10.* سورة يونس',
+        '11.* سورة هود',
+        '12.* سورة يوسف',
+        '13.* سورة الرعد',
+        '14.* سورة إبراهيم',
+        '15.* سورة الحجر',
+        '16.* سورة النحل',
+        '17.* سورة الإسراء',
+        '18.* سورة الكهف',
+        '19.* سورة مريم ',
+        '20.* سورة طه',
+        '21.* سورة الأنبياء',
+        '22.* سورة الحج',
+        '23.* سورة المؤمنون',
+        '24.* سورة النور',
+        '25.* سورة الفرقان',
+        '26.* سورة الشعراء',
+        '27.* سورة النمل ',
+        '28.* سورة القصص',
+        '29.* سورة العنكبوت',
+        '30.* سورة الروم',
+        '31.* سورة لقمان',
+        '32.* سورة السجدة',
+        '33.* سورة الأ',
+        '34.* سورة سبأ',
+        '35.* سورة فاطر',
+        '36.* سورة يس ',
+        '37.* سورة الصافات',
+        '38.* سورة ص',
+        '39.* سورة الزمر',
+        '40.* سورة غافر',
+        '41.* سورة فصلت',
+        '42.* سورة الشورى',
+        '43.* سورة الزخرف',
+        '44.* سورة الدخان',
+        '45.* سورة الجاثية',
+        '46.* سورة الأحقاف',
+        '47.* سورة محمد',
+        '48.* سورة الفتح',
+        '49.* سورة الحجرات',
+        '50.* سورة ق',
+        '51.* سورة الذاريات',
+        '52.* سورة الطور',
+        '53.* سورة النجم',
+        '54.* سورة القمر',
+        '55.* سورة الرحمن',
+        '56.* سورة الواقعة',
+        '57.* سورة الحديد',
+        '58.* سورة المجادلة',
+        '59.* سورة الحشر',
+        '60.* سورة الممتحنة',
+        '61.* سورة الصف',
+        '62.* سورة الجمعة',
+        '63.* سورة المنافقون',
+        '64.* سورة التغابن',
+        '65.* سورة الطلاق',
+        '66.* سورة التحريم',
+        '67.* سورة الملك',
+        '68.* سورة القلم',
+        '69.* سورة الحاقة',
+        '70.* سورة المعارج',
+        '71.* سورة نوح',
+        '72.* سورة الجن',
+        '73.* سورة المزمل',
+        '74.* سورة المدثر',
+        '75.* سورة القيامة',
+        '76.* سورة الإنسان',
+        '77.* سورة المرسلات',
+        '78.* سورة النبأ',
+        '79.* سورة النازعات',
+        '80.* سورة عبس',
+        '81.* سورة التكوير',
+        '82.* سورة الإنفطار',
+        '83.* سورة المطففين',
+        '84.* سورة الإنشقاق',
+        '85.* سورة البروج',
+        '86.* سورة الطارق',
+        '87.* سورة الأعلى',
+        '88.* سورة الغاشية',
+        '89.* سورة الفجر',
+        '90.* سورة البلد',
+        '91.* سورة الشمس',
+        '92.* سورة الليل',
+        '93.* سورة الضحى',
+        '94.* سورة الشرح',
+        '95.* سورة التين',
+        '96.* سورة العلق',
+        '97.* سورة القدر',
+        '98.* سورة البينة',
+        '99.* سورة الزلزلة',
+        '100.* سورة العاديات',
+        '101.* سورة القارعة',
+        '102.* سورة التكاثر',
+        '103.* سورة العصر',
+        '104.* سورة الهمزة',
+        '105.* سورة الفيل',
+        '106.* سورة قريش',
+        '107.* سورة الماعون',
+        '108.* سورة الكوثر',
+        '109.* سورة الكافرون',
+        '110.* سورة النصر',
+        '111.* سورة المسد',
+        '112.* سورة الإخلاص',
+        '113.* سورة الفلق',
+        '114.* سورة الناس'
+      ];
+      for (int i = 0; i < item.length; i++) {
+        var name = item[i].split('*');
+        list.add({
+          "title": name[1],
+          "desc": "network resouce playback",
+          "url":
+              "https://download.quranicaudio.com/qdc/abdul_baset/mujawwad/${i + 1}.mp3",
+          "coverUrl": "images/d.png"
+        });
+
+      }
+    }
+    _slider=0;
     AudioManager.instance.playOrPause();
     setupAudio();
     // TODO: Load a banner ad
@@ -237,7 +205,7 @@ class _MyAppState extends State<MapLocation> {
           _duration = AudioManager.instance.duration;
           _slider = 0;
           setState(() {});
-          AudioManager.instance.updateLrc("audio resource loading....");
+          AudioManager.instance.updateLrc("... جاري التحميل ");
           break;
         case AudioManagerEvents.ready:
           print("ready to play");
@@ -280,7 +248,7 @@ class _MyAppState extends State<MapLocation> {
     });
   }
 
- /* void loadFile() async {
+  /* void loadFile() async {
     // read bundle file to local path
     final audioFile = await rootBundle.load("assets/1.mp3");
     final audio = audioFile.buffer.asUint8List();
@@ -303,14 +271,13 @@ class _MyAppState extends State<MapLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        appBar: getAppBar(),
-       backgroundColor: const Color(0xff003D34),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              getFront('d'),
-              if (_bannerAd != null)
+      appBar: getAppBar(),
+      backgroundColor: const Color(0xff003D34),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            getFront('d'),
+            if (_bannerAd != null)
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
@@ -319,35 +286,41 @@ class _MyAppState extends State<MapLocation> {
                   child: AdWidget(ad: _bannerAd!),
                 ),
               ),
-              Divider(color: Colors.white,),
-              Expanded(
-                child: ListView.separated(
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('${ index +1} ',
-                                style: TextStyle(fontSize: 24,color: Color(0xffFFE29D))),
-                            Text('${list[index]["title"]!} ',
-                                style: TextStyle(fontSize: 24,color: Color(0xffFFE29D))),
-                          ],
-                        ),
-                        onTap: () => AudioManager.instance.play(index: index),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        Divider(color: Colors.white,),
-                    itemCount: list.length),
-              ),
-              Center(
-                  child: Text(_error != null
-                      ? _error
-                      : "${AudioManager.instance.info!.title}")),
-              bottomPanel()
-            ],
-          ),
+            Divider(
+              color: Colors.white,
+            ),
+            Expanded(
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('${index + 1} ',
+                              style: TextStyle(
+                                  fontSize: 24, color: Color(0xffFFE29D))),
+                          Text('${list[index]["title"]!} ',
+                              style: TextStyle(
+                                  fontSize: 24, color: Color(0xffFFE29D))),
+                        ],
+                      ),
+                      onTap: () => AudioManager.instance.play(index: index),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Divider(
+                        color: Colors.white,
+                      ),
+                  itemCount: list.length),
+            ),
+            Center(
+                child: Text(_error != null
+                    ? _error
+                    : "المرجوا التاكد من اتصالكم بالنترنت")),
+            bottomPanel()
+          ],
         ),
+      ),
       bottomNavigationBar: GetButtonNavigatBar(context),
     );
   }
@@ -377,8 +350,8 @@ class _MyAppState extends State<MapLocation> {
                 ),
                 onPressed: () => AudioManager.instance.previous()),
             IconButton(
-              onPressed: ()  {
-                 AudioManager.instance.playOrPause();
+              onPressed: () {
+                AudioManager.instance.playOrPause();
               },
               padding: const EdgeInsets.all(0.0),
               icon: Icon(
@@ -453,7 +426,7 @@ class _MyAppState extends State<MapLocation> {
                   inactiveTrackColor: Colors.white,
                 ),
                 child: Slider(
-                  value: _slider ,
+                  value: _slider,
                   onChanged: (value) {
                     setState(() {
                       _slider = value;

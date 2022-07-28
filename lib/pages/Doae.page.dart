@@ -131,9 +131,10 @@ class _ZikerState extends State<Ziker> {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-
-        child:Icon(Icons.add,color: Color(0xffFFE29D),size: 30,),
+          backgroundColor: Color(0xffFFE29D),
+        child:Icon(Icons.add,color: Colors.black,size: 30,),
         onPressed: (){
           if(time<widget.repeat){
             setState((){
