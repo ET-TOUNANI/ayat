@@ -5,12 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timer_builder/timer_builder.dart';
 
-
-getHejri(){
-
-}
-
-
+import '../pages/Resulr.dart';
 getFront(n) {
   return Container(
     width: double.infinity,
@@ -65,25 +60,49 @@ getAppBar() {
           end: Alignment.bottomCenter,
         )),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.settings,
-                  color: Color(0xffFFE29D),
-                )),
-            const SizedBox(
-              width: 270,
-            ),
             const Image(
               image: AssetImage("images/d.png"),
               height: 30,
             ),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.settings_suggest,
+                  color: Color(0xffFFE29D),
+                )),
           ],
         ),
       ));
 }
-
+getContainer(context,name,next){
+  //if(next!=10&&next!=20&&next!=30&&next!=40&&next!=50&&next!=60&&next!=70&&next!=80&&next!=90&&next!=100&&next!=0){
+    return Container(
+      height: MediaQuery.of(context).size.height /10,
+      width: MediaQuery.of(context).size.width ,
+      padding: EdgeInsets.all(15),
+      child: Material(
+        color: const Color(0xff002822),
+        elevation: 8,
+        child: InkWell(
+          splashColor: Colors.black26,
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>next));
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "$name",
+                style: TextStyle(fontSize: 19, color: Colors.white),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 Future<List<double>> getLocation() async {
   late Position position;
 

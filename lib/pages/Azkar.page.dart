@@ -63,7 +63,7 @@ class _AzkarState extends State<Azkar> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            getFront('g'),
+            getFront('ds'),
             if (_bannerAd != null)
               Align(
                 alignment: Alignment.topCenter,

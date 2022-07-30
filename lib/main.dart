@@ -4,12 +4,12 @@ import 'package:ayat/pages/Hijri.page.dart';
 import 'package:ayat/pages/Home.page.dart';
 import 'package:ayat/pages/MapsLocation.page.dart';
 import 'package:ayat/pages/Qiblat.page.dart';
+import 'package:ayat/pages/Test.dart';
 import 'package:ayat/pages/about.dart';
 import 'package:ayat/pages/aya.page.dart';
 import 'package:ayat/pages/quran.page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
 import 'configs/splashScreen.dart';
 
 void main(){
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/":(context)=> Home(),
         "/aya":(context)=> Aya(),
+        "/test":(context)=> Test(),
         "/quran":(context)=> Quran(),
         "/azkar":(context)=> Azkar(),
         "/splash":(context)=> getSplashScreen(),

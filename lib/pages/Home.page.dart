@@ -1,9 +1,7 @@
 import 'package:ayat/configs/configs.dart';
 import 'package:ayat/pages/awkatSalat.page.dart';
-import 'package:ayat/pages/aya.page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
 import '../adhelper.page.dart';
 
 class Home extends StatefulWidget {
@@ -20,7 +18,6 @@ class _HomeState extends State<Home> {
   void dispose() {
     // TODO: Dispose a BannerAd object
     _bannerAd?.dispose();
-
 
     super.dispose();
   }
@@ -71,165 +68,42 @@ class _HomeState extends State<Home> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () async {
-                        bool permission = await checkGps();
-                        if (permission) {
-                          List<double> tab = await getLocation();
-                          if (tab.isNotEmpty) {
-                            List awkats = getSalawat(tab[0], tab[1]);
-                            if (awkats.isNotEmpty) {
-                              List<Map> times = awkat(awkats[0], awkats[1],
-                                  awkats[2], awkats[3], awkats[4], awkats[5],awkats[6]);
-                              if (times.isNotEmpty) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AwkatSalat(awkat: times)));
-                              }
-                            }
-                          }
-                        }
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/masjid.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "اوقات الصلاة",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/qibla");
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/kibla.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "القبلة",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Aya()),
-                        );
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/aya.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "اية",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  getContainer('location', 'time', 'تجويد'),
+                  getContainer('qibla', 'kibla', 'القبلة'),
+                  getContainer('aya', 'aya', 'اختبر نفسك'),
                 ],
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Material(
+                  Container(
+                  height: MediaQuery.of(context).size.height / 5.5,
+                  width: MediaQuery.of(context).size.width / 3,
+                  padding: EdgeInsets.all(1.5),
+                  child: Material(
                     color: const Color(0xff002822),
                     elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
                       splashColor: Colors.black26,
                       onTap: () {
-                        Navigator.pushNamed(context, '/azkar');
+                        doIt();
                       },
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Ink.image(
-                            image: const AssetImage('images/tasbih.png'),
-                            height: 80,
-                            width: 110,
+                            image: AssetImage('images/masjid.png'),
+                            height: 40,
+                            width: 40,
                             //fit: BoxFit.cover,
                           ),
                           const SizedBox(
                             height: 6,
                           ),
-                          const Text(
-                            "تسبيح",
+                          Text(
+                            "اوقات الصلاة",
                             style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
+                                fontSize: 14, color: Color(0xffFFE29D)),
                           ),
                           const SizedBox(
                             height: 6,
@@ -238,193 +112,16 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/doae");
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/doae.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "الادعية",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, '/location');
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/time.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "تجويد",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-
+                ),
+                  getContainer('hijri', 'takwim', 'التقويم الهجري'),
+                  getContainer('doae', 'doae', 'الادعية'),
                 ],
               ),
               Column(
                 children: [
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, '/quran');
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/quran.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "القران الكريم",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, '/hijri');
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/takwim.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "التقويم الهجري",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                  ),
-                  Material(
-                    color: const Color(0xff002822),
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(10),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      splashColor: Colors.black26,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/about");
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage('images/builder.png'),
-                            height: 80,
-                            width: 110,
-                            //fit: BoxFit.cover,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          const Text(
-                            "حول",
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xffFFE29D)),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  getContainer('quran', 'quran', 'القران الكريم'),
+                  getContainer('azkar', 'tasbih', 'تسبيح'),
+                  getContainer('about', 'builder', 'حول')
                 ],
               )
             ],
@@ -432,5 +129,64 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+  }
+
+  getContainer(rout, img, name) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 5.5,
+      width: MediaQuery.of(context).size.width / 3,
+      padding: EdgeInsets.all(1.5),
+      child: Material(
+        color: const Color(0xff002822),
+        elevation: 8,
+        child: InkWell(
+          splashColor: Colors.black26,
+          onTap: () {
+            Navigator.pushNamed(context, '/$rout');
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Ink.image(
+                image: AssetImage('images/$img.png'),
+                height: 40,
+                width: 40,
+                //fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                "$name",
+                style: TextStyle(fontSize: 14, color: Color(0xffFFE29D)),
+              ),
+              const SizedBox(
+                height: 6,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  doIt() async {
+    bool permission = await checkGps();
+    if (permission) {
+      List<double> tab = await getLocation();
+      if (tab.isNotEmpty) {
+        List awkats = getSalawat(tab[0], tab[1]);
+        if (awkats.isNotEmpty) {
+          List<Map> times = awkat(awkats[0], awkats[1], awkats[2], awkats[3],
+              awkats[4], awkats[5], awkats[6]);
+          if (times.isNotEmpty) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AwkatSalat(awkat: times)));
+          }
+        }
+      }
+    }
   }
 }

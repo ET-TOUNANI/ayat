@@ -61,30 +61,30 @@ class _StartPageState extends State<Hijri> {
                     child: AdWidget(ad: _bannerAd!),
                   ),
                 ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: Colors.white,
-                    shadowColor: Colors.black38,
-                    child: SfHijriDateRangePicker(
-                      rangeTextStyle: TextStyle(color: const Color(0xffFFE29D)),
-                      view: HijriDatePickerView.month,
-                      showNavigationArrow: true,
-                      selectionColor: Colors.indigoAccent,
-                      monthViewSettings: HijriDatePickerMonthViewSettings(
-                          dayFormat: 'EEE',
-                          viewHeaderStyle: DateRangePickerViewHeaderStyle(
-                              backgroundColor: Colors.tealAccent)),
-                      headerStyle: DateRangePickerHeaderStyle(
-                          textAlign: TextAlign.center,
-                          textStyle:
-                              TextStyle(color: Colors.white, fontSize: 20),
-                          backgroundColor: Colors.teal),
+              Container(
+                height: MediaQuery.of(context).size.height/1.8 ,
+                color: Colors.green,
+                child:  Card(
+                      color: Colors.white,
+                      shadowColor: Colors.black38,
+                      child: SfHijriDateRangePicker(
+                        rangeTextStyle: const TextStyle(color: Color(0xffFFE29D)),
+                        view: HijriDatePickerView.month,
+                        showNavigationArrow: true,
+                        selectionColor: Colors.indigoAccent,
+                        monthViewSettings: const HijriDatePickerMonthViewSettings(
+                            dayFormat: 'EEE',
+                            viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                                backgroundColor: Colors.tealAccent)),
+                        headerStyle: const DateRangePickerHeaderStyle(
+                            textAlign: TextAlign.center,
+                            textStyle:
+                                TextStyle(color: Colors.white, fontSize: 20),
+                            backgroundColor: Colors.teal),
+                      ),
                     ),
                   ),
-                ),
-              ),
+
             ],
           ),
         ),
