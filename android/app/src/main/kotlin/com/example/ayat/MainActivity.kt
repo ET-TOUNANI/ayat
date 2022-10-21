@@ -1,4 +1,4 @@
-package com.example.ayat
+package com.ettoun.ayat
 
 import io.flutter.embedding.android.FlutterActivity
 
