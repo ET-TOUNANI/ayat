@@ -150,7 +150,7 @@ class _AboutState extends State<About> {
         backgroundColor: Color(0xffFFE29D),
         child:Icon(Icons.call,color: Colors.black,size: 30,),
         onPressed: () async {
-          const url = 'https://abderrahmane.vercel.app/';
+          const url = 'com.ettoun.ayat';
           if (await canLaunchUrl(Uri.parse(url))) {
             await launchUrl(Uri.parse(url));
           } else {
