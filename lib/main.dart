@@ -10,6 +10,7 @@ import 'package:ayat/pages/aya.page.dart';
 import 'package:ayat/pages/quran.page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'configs/splashScreen.dart';
 
 void main(){
