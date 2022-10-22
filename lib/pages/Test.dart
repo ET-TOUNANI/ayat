@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../configs/GetButtonNavigatBar.config.dart';
 import '../configs/configs.dart';
 import 'Resulr.dart';
