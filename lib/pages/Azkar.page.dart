@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+
 //https://api.aladhan.com/v1/calendarByAddress?address=Mohammedia,%20Maroc&method=2&month=07&year=2022
 //http://api.aladhan.com/v1/qibla/25.4106386/51.1846025
 // http://api.aladhan.com/asmaAlHusna/77
