@@ -2,6 +2,7 @@ import 'package:ayat/configs/configs.dart';
 import 'package:ayat/pages/awkatSalat.page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import '../adhelper.page.dart';
 
 class Home extends StatefulWidget {
